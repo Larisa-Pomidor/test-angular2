@@ -1,0 +1,24 @@
+.header {
+    background: black;
+    display: flex;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.header__button {
+    border: solid 5px;
+    border-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.header__link {
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+}
