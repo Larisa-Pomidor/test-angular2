@@ -1,0 +1,19 @@
+<div class="add">
+    <div class="add__inner">
+        <form (ngSubmit)="submitForm()" #myForm="ngForm">
+            <div class="add__input">
+                <input type="text" id="front" name="front" [(ngModel)]="formData.front" placeholder="Front" required>
+            </div>
+
+            <div class="add__input">
+                <input type="text" id="back" name="back" [(ngModel)]="formData.back" placeholder="Back" required>
+            </div>
+
+            <div class="add__input">
+                <input type="text" id="imageUrl" name="imageUrl" [(ngModel)]="formData.imageUrl" placeholder="Image Url" required>
+            </div>
+
+            <button class="add__form-button" type="submit">Add Card</button>
+        </form>
+    </div>
+</div>

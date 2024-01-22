@@ -1,0 +1,21 @@
+.add__inner {
+    padding: 0px 5px;
+}
+.add__input input {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: solid 1px grey;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.add__form-button {
+    width: 100%;
+    background: #933eff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+}
