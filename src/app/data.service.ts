@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +10,24 @@ export class DataService {
   //API_URL = "https://flashcardsktorapp.onrender.com"
   API_URL = "http://localhost:8080/"
 
-  cards: any;
+  private cards$: Observable<any[]>;
+
   constructor(private http: HttpClient) {
-    this.getAllCards();
+    this.cards$ = this.getAllCards();
   }
 
-  getAllCards() {
-    this.http.get(this.API_URL + "/api/v1/cards")
-      .subscribe((response) => {
-        this.cards = response;
-      });
+  private getAllCards(): Observable<any[]> {
+    return this.http.get<any[]>(this.API_URL + "/api/v1/cards");
+  }
+
+  getCards(): Observable<any[]> {
+    return this.cards$;
   }
 
   deleteCard(id: number) {
     this.http.delete(this.API_URL + "/api/v1/cards/" + id).subscribe(
       () => {
         console.log('DELETE request successful');
-        this.cards = this.cards.filter((element: any) => element.id !== id);
       },
       (error) => {
         console.error('Error during DELETE request:', error);

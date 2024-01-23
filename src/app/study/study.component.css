@@ -27,6 +27,7 @@
     backface-visibility: hidden;
     text-align: center;
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .flip-card__front {

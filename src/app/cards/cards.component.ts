@@ -13,7 +13,9 @@ export class CardsComponent {
   cards: any;
 
   constructor(private dataService: DataService) {
-    this.cards = dataService.cards;
+    this.dataService.getCards().subscribe(cards => {
+      this.cards = cards;
+    });
   }
 
   deleteCard(id: number) {

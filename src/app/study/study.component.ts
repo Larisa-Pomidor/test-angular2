@@ -10,7 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './study.component.css'
 })
 export class StudyComponent {
+  cards: any
   card: any
+
   flipActive = false
   hideCard = false
 
@@ -22,11 +24,11 @@ export class StudyComponent {
   checkingPart = 0.04
 
   constructor(private dataService: DataService) {
-  }
-
-  ngOnInit(): void {
-    this.scoreArray = new Array(this.dataService.cards.length).fill(0);
-    this.card = this.setRandomCard()
+    this.dataService.getCards().subscribe(cards => {
+      this.cards = cards;
+      this.scoreArray = new Array(this.cards.length).fill(0);
+      this.card = this.setRandomCard()
+    });
   }
 
   changeCard() {
@@ -40,16 +42,16 @@ export class StudyComponent {
   }
 
   chooseCard() {
-    let cardsToCheck = Math.floor(this.dataService.cards.length * this.checkingPart)
+    let cardsToCheck = Math.floor(this.cards.length * this.checkingPart)
 
-    let currentCheckIndex = Math.floor(Math.random() * this.dataService.cards.length);
+    let currentCheckIndex = Math.floor(Math.random() * this.cards.length);
     let currentScore = this.scoreArray[currentCheckIndex];
 
     let minResult = this.scoreArray[currentCheckIndex];
     let minIndex = currentCheckIndex;
 
     for (let i = 0; i < cardsToCheck - 1; i++) {
-      currentCheckIndex = Math.floor(Math.random() * this.dataService.cards.length);
+      currentCheckIndex = Math.floor(Math.random() * this.cards.length);
       currentScore = this.scoreArray[currentCheckIndex];
 
       if (currentScore < minResult) {
@@ -63,7 +65,7 @@ export class StudyComponent {
   setRandomCard() {
     this.isReverted = this.setSide();
     this.currentIndex = this.chooseCard()
-    return this.dataService.cards[this.currentIndex];
+    return this.cards[this.currentIndex];
   }
 
   setSide() {
