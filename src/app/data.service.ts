@@ -7,8 +7,8 @@ import { Observable, catchError, of } from 'rxjs';
 })
 export class DataService {
   
-  //API_URL = "https://flashcardsktorapp.onrender.com"
-  API_URL = "http://localhost:8080/"
+  API_URL = "https://flashcardsktorapp.onrender.com"
+  //API_URL = "http://localhost:8080/"
 
   private cards$: Observable<any[]>;
 
