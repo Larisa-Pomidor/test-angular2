@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
   
-  API_URL = "https://flashcardsktorapp.onrender.com"
+  //API_URL = "https://flashcardsktorapp.onrender.com"
+  API_URL = "http://localhost:8080/"
 
   cards: any;
   constructor(private http: HttpClient) {

@@ -2,10 +2,10 @@
     <div class="flip-card" [ngClass]="{'flip-card_active': flipActive}" [ngClass]="{'flip-card_hide': hideCard}">
         <div class="flip-card__inner">
             <div class="flip-card__front">
-                {{ card.front }}
+                {{ isReverted ? card.front : card.back }}
             </div>
             <div class="flip-card__back">
-                {{ card.back }}
+                {{ isReverted ? card.back : card.front }}
             </div>
             <div *ngIf="card.image_url != ''" class="flip-card__image">
                 <img [src]="card.imageUrl" alt="">                
@@ -13,13 +13,13 @@
         </div>
         
         <div class="flip-card__control">
-            <div class="flip-card__control-item flip-card__control-item_success" (click)="changeCard()">
+            <div class="flip-card__control-item flip-card__control-item_success" (click)="setSuccessCard()">
                 ✔
             </div>
             <div class="flip-card__control-item flip-card__control-item_reverse" (click)="flipCard()">
                 ↻
             </div>
-            <div class="flip-card__control-item flip-card__control-item_fail" (click)="changeCard()">
+            <div class="flip-card__control-item flip-card__control-item_fail" (click)="setFailedCard()">
                 ✖
             </div>
         </div>
