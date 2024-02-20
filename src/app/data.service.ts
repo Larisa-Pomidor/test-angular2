@@ -45,4 +45,8 @@ export class DataService {
       }
     );
   }
+
+  getCard(id: number) {
+    return this.http.get<any[]>(this.API_URL + "/api/v1/cards/" + id);
+  }
 }

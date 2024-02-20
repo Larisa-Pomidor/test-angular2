@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class StudyComponent {
   cards: any
   card: any
+  current: any
 
   flipActive = false
   hideCard = false
@@ -26,13 +27,19 @@ export class StudyComponent {
   constructor(private dataService: DataService) {
     this.dataService.getCards().subscribe(cards => {
       this.cards = cards;
+      this.current = 0
       this.scoreArray = new Array(this.cards.length).fill(0);
       this.card = this.setRandomCard()
     });
+
+    setInterval(() => {
+      this.dataService.getCard(this.cards[0].id).subscribe(card => {
+        console.log(card)
+      });
+    }, 300000);
   }
 
   changeCard() {
-    console.log(this.scoreArray)
     this.flipActive = false;
     this.hideCard = true;
     setTimeout(() => {
@@ -79,6 +86,7 @@ export class StudyComponent {
   setSuccessCard() {
     this.scoreArray[this.currentIndex]++;
     this.changeCard()
+    this.current++
   }
 
   setFailedCard() {
