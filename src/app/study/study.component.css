@@ -102,3 +102,13 @@
     margin-top: 20px;
     padding: 10px;
 }
+
+.meta__open-all {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(189, 255, 169);
+    border-radius: 5px;
+    cursor: pointer;
+}

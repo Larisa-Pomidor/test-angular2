@@ -26,7 +26,7 @@ export class StudyComponent {
 
   constructor(private dataService: DataService) {
     this.dataService.getCards().subscribe(cards => {
-      this.cards = cards;
+      this.cards = cards.filter(card => card.score > -10000);
       this.current = 0
       this.scoreArray = new Array(this.cards.length).fill(0);
       this.card = this.setRandomCard()
@@ -92,5 +92,11 @@ export class StudyComponent {
   setFailedCard() {
     this.scoreArray[this.currentIndex]--;
     this.changeCard()
+  }
+
+  openAllCards() {
+    this.dataService.getCards().subscribe(cards => {
+      this.cards = cards;
+    });
   }
 }
