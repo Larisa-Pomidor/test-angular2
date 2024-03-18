@@ -1,8 +1,12 @@
 <div class="cards page">
     <div class="cards__list">
-        <div class="cards__item" *ngFor="let card of cards; let i = index">
+        <div class="cards__item" *ngFor="let card of cards; let i = index" [ngClass]="{'cards__item_active': card.score > -1000}">
             <div class="cards__content">{{i+1}}. {{card.back}} / {{card.front}}</div>
-            <div class="cards__delete" (click)="deleteCard(card.id)">delete</div>
+            <div class="cards__tools">
+                <div class="cards__hide" *ngIf="card.score <= -1000" (click)="openCard(card.id)">open</div>
+                <div class="cards__hide" *ngIf="card.score > -1000" (click)="hideCard(card.id)">hide</div>
+                <div class="cards__delete" (click)="deleteCard(card.id)">delete</div>
+            </div>
         </div>
     </div>
 </div>
