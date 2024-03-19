@@ -15,6 +15,7 @@ export class CardsComponent {
   constructor(private dataService: DataService) {
     this.dataService.getCards().subscribe(cards => {
       this.cards = cards;
+      this.cards.sort((a, b) => b.score - a.score);
     });
   }
 
